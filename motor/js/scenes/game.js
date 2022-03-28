@@ -1,5 +1,6 @@
 class GameScene extends Phaser.Scene {
-    constructor (){
+	
+	constructor (){
         super('GameScene');
 		this.cards = null;
 		this.firstClick = null;

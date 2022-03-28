@@ -12,6 +12,7 @@ input[type=number]{
 }
 
 #title{
+	width: 300px;
 	font-size: 38px;
 	line-height: 75px;
 	font-family: Arial Black;
@@ -21,10 +22,10 @@ input[type=number]{
 	display:block;
 	margin-left: auto;
 	margin-right: auto;
-	width: 300px;
+	width: 270px;
 	height: 75px;
 	font-size: 16px;
-	margin-top: 10px;
+	margin-top: 15px;
 
 	color: #dab9aa;
 	font-family: Arial Black;
