@@ -1,0 +1,62 @@
+body{
+	min-height: 100vh;
+	background: linear-gradient(#c00000, #c08300)
+}
+
+input[type=number]{
+	height: 3rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    width: 3rem;
+    text-align: center;
+}
+
+#title{
+	font-size: 38px;
+	line-height: 75px;
+	font-family: Arial Black;
+}
+
+.menu-object{
+	display:block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 300px;
+	height: 75px;
+	font-size: 16px;
+	margin-top: 10px;
+
+	color: #dab9aa;
+	font-family: Arial Black;
+
+	border-width: 4px;
+	border-radius: 15px;
+	border-color: #807703;
+
+	transition-duration: 0.2s;
+}
+
+p{
+	font-weight: bold;
+	text-align: center;
+	color: white;
+}
+
+button.menu-object:active{
+	font-size: 18px;
+	width: 275px;
+	height: 70px;
+
+	color: black;
+	border-color: black;
+}
+
+button.menu-object:hover:not(:active){
+	font-size: 22px;
+	width: 325px;
+	height: 85px;
+
+	background-color: white;
+    color:#db912f;
+}
+
