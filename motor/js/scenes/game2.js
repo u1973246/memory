@@ -136,7 +136,7 @@ class GameScene extends Phaser.Scene {
 							else{
 								this.dificultat +=1;
 							}
-							if(this.nivell<9){
+							if(this.nivell<10){
 								this.correct = 0;
 								this.puntuacio = 20;
 								this.create();
