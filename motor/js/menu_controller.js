@@ -21,6 +21,10 @@ function exit (){
 	name = "";
 }
 
+function ranquing(){
+	loadpage("./html/ranquing.html");
+}
+
 function options(){
 	loadpage("./html/options.html");
 }

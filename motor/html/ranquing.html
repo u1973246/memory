@@ -1,0 +1,25 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<link rel="stylesheet" href="../styles/main.css">
+		<script src="../js/loader.js"></script>
+		<title> My first game - Ranquing </title>
+	</head>
+	<body>
+		<div id="saves_id">
+			<p class="menu-object" id="title">Ranquing</p>
+			<p class="menu-object" >Aquest ranquing només pertany a les partides perdudes en el mode 2 de phaser.io</p><br>
+			<div v-for="(save, indx) in saves2">
+				<p class="menu-object"> 
+					NUMERO DE PARTIDA: {{save.num_partida}},
+					nivell: {{save.nivell}},
+					dificultat: {{save.dificultat}} 
+				</p>
+			</div>
+		</div>
+		<a class="menu-object" href="../">GoToMenu</a>
+	</body>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+	<script src="../js/ranquing.js"></script>
+</html>
+

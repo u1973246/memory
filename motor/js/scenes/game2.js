@@ -102,6 +102,23 @@ class GameScene extends Phaser.Scene {
 							card.enableBody(false, 0, 0, true, true);
 							if (this.score <= 0){ //Si perdem
 								alert("Game Over"); 
+
+								//Guardar cada patida quan perdem
+								let arrayPartides2 = [];
+								let numero_p = 0;
+								if(localStorage.partides2){
+									arrayPartides2 = JSON.parse(localStorage.partides2);
+									if(!Array.isArray(arrayPartides2)) arrayPartides2 = [];
+									var lastElement = arrayPartides2[arrayPartides2.length - 1];
+									numero_p = lastElement.num_partida+1;
+								}
+								let partida = {
+									num_partida: numero_p,
+									nivell: this.nivell,
+									dificultat: this.dificultat
+								}
+								arrayPartides2.push(partida);
+				                localStorage.partides2 = JSON.stringify(arrayPartides2);
 								loadpage("../");
 							}
 							this.firstClick = null;
