@@ -112,14 +112,16 @@ class GameScene extends Phaser.Scene {
 						if (this.correct >= this.numCards/2){ //Si guanyem
 							alert("You Win with " + this.score + " points and with difficulty level " + this.dificultat);
 							this.nivell+=1;
-							if(this.nivell == 3 || this.nivell == 6){
+							if(this.nivell == 4 || this.nivell == 7){
 								this.numCards+=2;
+								this.dificultat = 1;
 							}
 							else{
 								this.dificultat +=1;
 							}
 							if(this.nivell<9){
 								this.correct = 0;
+								this.puntuacio = 20;
 								this.create();
 							}
 							else{
