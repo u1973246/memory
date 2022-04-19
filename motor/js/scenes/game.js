@@ -15,6 +15,7 @@ class GameScene extends Phaser.Scene {
 		this.cards = null;
 		this.firstClick = null;
 		this.score = 100;
+		this.puntuacio = 20;
 		this.correct = 0;
     }
 
@@ -63,6 +64,24 @@ class GameScene extends Phaser.Scene {
 		//this.cards.create(350, 300, 'back');
 		//this.cards.create(450, 300, 'back');
 		//this.cards.create(550, 300, 'back');
+
+		//DIFICULTAT
+		var dificultat = options_data.dificulty;
+		var sec = 5000;
+		if(dificultat == 'normal') {sec = 3000; this.puntuacio = 25}
+		else if(dificultat == 'hard') { sec = 1000; this.puntuacio = 50}
+		//MOSTRAR CARTES
+		var timer = this.time.addEvent({ delay: sec, callback: onEvent, callbackScope: this, loop: false });
+		this.cards.children.iterate((card)=>{
+			card.disableBody(true,true);
+			setTimeout(this.desmostrarInicial, sec);
+		});
+		//AMAGAR CARTES
+		function onEvent (){
+			this.cards.children.iterate((card)=>{
+				card.enableBody(false, 0, 0, true, true);
+			});
+		}
 		
 		let i = 0;
 		this.cards.children.iterate((card)=>{
@@ -71,19 +90,19 @@ class GameScene extends Phaser.Scene {
 			card.setInteractive();
 			card.on('pointerup', () => {
 				card.disableBody(true,true);
-				if (this.firstClick){
-					if (this.firstClick.card_id !== card.card_id){
-						this.score -= 20;
+				if (this.firstClick){ 
+					if (this.firstClick.card_id !== card.card_id){ //Si fallem la carta
+						this.score -= this.puntuacio;
 						this.firstClick.enableBody(false, 0, 0, true, true);
 						card.enableBody(false, 0, 0, true, true);
-						if (this.score <= 0){
-							alert("Game Over");
+						if (this.score <= 0){ //Si perdem
+							alert("Game Over"); 
 							loadpage("../");
 						}
 					}
-					else{
+					else{ //Si encertem la carta
 						this.correct++;
-						if (this.correct >= 2){
+						if (this.correct >= this.numCards/2){ //Si guanyem
 							alert("You Win with " + this.score + " points.");
 							loadpage("../");
 						}
