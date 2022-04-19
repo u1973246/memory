@@ -1,7 +1,17 @@
+var json = localStorage.getItem("config");
+if(json){
+	options_data = JSON.parse(json);
+}
+else{
+	options_data.cards = 2;
+	options_data.dificulty = "hard";
+}
+
 class GameScene extends Phaser.Scene {
 	
 	constructor (){
         super('GameScene');
+		this.numCards = options_data.cards * 2;
 		this.cards = null;
 		this.firstClick = null;
 		this.score = 100;
@@ -19,20 +29,40 @@ class GameScene extends Phaser.Scene {
 	}
 	
     create (){	
-		let arraycards = ['co', 'sb', 'co', 'sb'];
+
+		let totalArrayCards = ['co', 'sb', 'cb', 'so', 'tb', 'to'];
+		let arraycards = [];
+		for(let y=0; y<this.numCards/2; y++){
+			arraycards.push(totalArrayCards[y]);
+			arraycards.push(totalArrayCards[y]);
+		}
+		arraycards.sort(function(){return Math.random() - 0.5}); //array aleatoria
+
 		this.cameras.main.setBackgroundColor(0xBFFCFF);
-		
-		this.add.image(250, 300, arraycards[0]);
-		this.add.image(350, 300, arraycards[1]);
-		this.add.image(450, 300, arraycards[2]);
-		this.add.image(550, 300, arraycards[3]);
+
+		var a = 450 - this.numCards/2*100; //Imatges quedin centrades
+		for(let x=0; x<this.numCards; x++){
+			this.add.image(a, 300, arraycards[x]);
+			a+=100;
+		}
+
+		//this.add.image(250, 300, arraycards[0]);
+		//this.add.image(350, 300, arraycards[1]);
+		//this.add.image(450, 300, arraycards[2]);
+		//this.add.image(550, 300, arraycards[3]);
 		
 		this.cards = this.physics.add.staticGroup();
 		
-		this.cards.create(250, 300, 'back');
-		this.cards.create(350, 300, 'back');
-		this.cards.create(450, 300, 'back');
-		this.cards.create(550, 300, 'back');
+		var b = 450 - this.numCards/2*100; //Imatges quedin centrades
+		for(let x=0; x<this.numCards; x++){
+			this.cards.create(b, 300, 'back');
+			b+=100;
+		}
+
+		//this.cards.create(250, 300, 'back');
+		//this.cards.create(350, 300, 'back');
+		//this.cards.create(450, 300, 'back');
+		//this.cards.create(550, 300, 'back');
 		
 		let i = 0;
 		this.cards.children.iterate((card)=>{
