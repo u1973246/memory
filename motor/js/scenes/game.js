@@ -93,12 +93,18 @@ class GameScene extends Phaser.Scene {
 				if (this.firstClick){ 
 					if (this.firstClick.card_id !== card.card_id){ //Si fallem la carta
 						this.score -= this.puntuacio;
-						this.firstClick.enableBody(false, 0, 0, true, true);
-						card.enableBody(false, 0, 0, true, true);
-						if (this.score <= 0){ //Si perdem
-							alert("Game Over"); 
-							loadpage("../");
-						}
+						this.firstClick.disableBody(true,true);
+						var timer2 = this.time.addEvent({ delay: 1000, callback: onEvent2, callbackScope: this, loop: false });
+
+						function onEvent2(){
+							this.firstClick.enableBody(false, 0, 0, true, true);
+							card.enableBody(false, 0, 0, true, true);
+							if (this.score <= 0){ //Si perdem
+								alert("Game Over"); 
+								loadpage("../");
+							}
+							this.firstClick = null;
+						}	
 					}
 					else{ //Si encertem la carta
 						this.correct++;
@@ -106,8 +112,8 @@ class GameScene extends Phaser.Scene {
 							alert("You Win with " + this.score + " points.");
 							loadpage("../");
 						}
+						this.firstClick = null;
 					}
-					this.firstClick = null;
 				}
 				else{
 					this.firstClick = card;
